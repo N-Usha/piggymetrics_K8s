@@ -7,7 +7,7 @@ trigger:
     - master # branch names which will trigger a build
   paths:
     include: 
-    - statiscs-service/* # file paths which must match to trigger a build
+    - statistics-service/* # file paths which must match to trigger a build
 
 resources:
 - repo: self
@@ -15,7 +15,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'cee7ced7-de9d-4edc-98a0-324a8f75dc36'
-  imageRepository: 'statiscs-service'
+  imageRepository: 'statistics-service'
   containerRegistry: 'usharegistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/$(imageRepository)/Dockerfile'
   tag: '$(Build.BuildId)'
