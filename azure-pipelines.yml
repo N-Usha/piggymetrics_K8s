@@ -5,7 +5,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '8c746889-cb5a-41a5-8037-b2c04cc49ca4'
+  dockerRegistryServiceConnection: 'RMPM (afc11291-9826-46be-b852-70349146ddf8)'
   imageRepository: 'nushapiggymetrics'
   containerRegistry: 'usharegistry.azurecr.io'
   dockerfilePath: '**/Dockerfile'
