@@ -3,7 +3,10 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- master
+  branches:
+    include: master # branch names which will trigger a build
+  paths:
+    include: account-service/* # file paths which must match to trigger a build
 
 resources:
 - repo: self
