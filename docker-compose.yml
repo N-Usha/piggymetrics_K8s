@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   rabbitmq:
     image: rabbitmq:3-management
@@ -57,7 +57,7 @@ services:
       STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
       ACCOUNT_SERVICE_PASSWORD: $ACCOUNT_SERVICE_PASSWORD
       MONGODB_PASSWORD: $MONGODB_PASSWORD
-    image: usharegistry.azurecr.io/sqshq/piggymetrics-auth-service
+    image: sqshq/piggymetrics-auth-service
     restart: always
     depends_on:
       config:
