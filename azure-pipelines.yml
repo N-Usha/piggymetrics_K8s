@@ -1,9 +1,3 @@
-# Deploy to Azure Kubernetes Service
-# Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
-trigger:
-- master
 
 resources:
 - repo: self
@@ -21,6 +15,7 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
+stages:
 - stage: Deploy
   displayName: Deploy stage
   jobs:
