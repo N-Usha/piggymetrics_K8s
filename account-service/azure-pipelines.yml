@@ -1,7 +1,6 @@
 # Maven Build
 # Docker Build and push an image to Azure Container Registry
 
-
 trigger:
   branches:
     include: 
