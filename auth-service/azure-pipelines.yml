@@ -1,4 +1,4 @@
-# Maven Build
+# Maven Build using POM file
 # Docker Build and push an image to Azure Container Registry
 
 trigger:
