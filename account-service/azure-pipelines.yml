@@ -4,9 +4,11 @@
 
 trigger:
   branches:
-    include: master # branch names which will trigger a build
+    include: 
+    - master # branch names which will trigger a build
   paths:
-    include: account-service/* # file paths which must match to trigger a build
+    include: 
+    - account-service/* # file paths which must match to trigger a build
 
 resources:
 - repo: self
