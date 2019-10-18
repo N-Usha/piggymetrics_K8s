@@ -31,11 +31,15 @@ stages:
     steps:
 
     - task: Maven@3
-      displayName: 'Maven Package'
+      displayName: 'Maven Compile'
       inputs:
-        goals: package
-        options: [-DskipTests]
+        goals: compile
+        options: '-Dmaven.test.skip=true'
         publishJUnitResults: false
+    - task: Maven@3
+      displayName: 'Maven $(mavenPOMFile)'
+      inputs:
+        mavenPomFile: pom.xml
         
     - task: DockerCompose@0
       inputs:
