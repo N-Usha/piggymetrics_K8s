@@ -48,7 +48,7 @@ stages:
         dockerComposeFile: 'docker-compose.yml'
         additionalDockerComposeFiles: 'docker-compose.dev.yml'
         action: 'Run a Docker Compose command'
-        dockerComposeCommand: '-f docker-compose.yml -f docker-compose.dev.yml up'
+        dockerComposeCommand: '-f docker-compose.yml up'
 
     - task: DockerCompose@0
       inputs:
