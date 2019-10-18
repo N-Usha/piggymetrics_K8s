@@ -68,7 +68,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'NUshapiggymetrics.piggydemo'
+    environment: 'NUshapiggymetricsK8s.piggydemo'
     strategy:
       runOnce:
         deploy:
