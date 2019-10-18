@@ -40,9 +40,11 @@ stages:
     - task: DockerCompose@0
       inputs:
         containerregistrytype: 'Container Registry'
-        dockerComposeFile: docker-compose.yml
-        dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-        action: 'Build Services'
+        dockerRegistryEndpoint: '$(dockerRegistryServiceConnection)'
+        dockerComposeFile: 'docker-compose.yml'
+        additionalDockerComposeFiles: 'docker-compose.dev.yml'
+        action: 'Run a Docker Compose command'
+        dockerComposeCommand: 'docker-compose -f docker-compose.yml -f docker-compose.dev.yml up'
 
     - task: DockerCompose@0
       inputs:
