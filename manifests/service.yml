@@ -58,7 +58,7 @@ spec:
   - port: 8000
   selector:
     app: notification-service
- ---
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -68,7 +68,7 @@ spec:
   - port: 8761
   selector:
     app: registry
- ---
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -78,7 +78,7 @@ spec:
   - port: 7000
   selector:
     app: statistics-service
- ---
+---
 apiVersion: v1
 kind: Service
 metadata:
