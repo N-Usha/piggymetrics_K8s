@@ -1,0 +1,47 @@
+# This workflow will build a docker container, publish it to Azure Container Registry, and deploy it to Azure Kubernetes Service.
+#
+# To configure this workflow:
+#
+# 1. Set up the following secrets in your workspace: 
+#     a. REGISTRY_USERNAME with ACR username
+#     b. REGISTRY_PASSWORD with ACR Password
+#     c. AZURE_CREDENTIALS with the output of `az ad sp create-for-rbac --sdk-auth`
+#
+# 2. Change the values for the REGISTRY_NAME, CLUSTER_NAME, CLUSTER_RESOURCE_GROUP and NAMESPACE environment variables (below).
+
+on: [push]
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  REGISTRY_NAME: my-registry-name
+  CLUSTER_NAME: my-cluster-name
+  CLUSTER_RESOURCE_GROUP: my-cluster-resource-group
+  NAMESPACE: default
+  
+jobs:
+  deploy-to-aks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    # Set the target Azure Kubernetes Service (AKS) cluster. 
+    - uses: azure/aks-set-context@v1
+      with:
+        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+        cluster-name: ${{ env.CLUSTER_NAME }}
+        resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+     
+    # Substituting passwords in the deploymenet.yml with the secrets configured at Repo level
+    - uses: microsoft/variable-substitution@v1 
+      with:
+        files: 'manifests/deployment.yml'
+      env:
+        password: ${{ secrets.MONGODB_PASSWORD }}
+    
+    # Deploy app to AKS
+    - uses: azure/k8s-deploy@v1
+      with:
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+        namespace: ${{ env.NAMESPACE }}
