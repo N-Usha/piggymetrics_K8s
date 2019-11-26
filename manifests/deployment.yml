@@ -14,17 +14,10 @@ spec:
           image: rabbitmq:3-management
           ports:
           - containerPort: 15672
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          # The ConfigMap we want to use
+          - configMapRef:
+              name: configmap
 
 ---
 apiVersion : apps/v1beta1
@@ -43,17 +36,9 @@ spec:
           image: sqshq/piggymetrics-account-service
           ports:
           - containerPort: 6000
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 
 ---
 apiVersion : apps/v1beta1
@@ -72,17 +57,9 @@ spec:
           image: sqshq/piggymetrics-auth-service 
           ports:
           - containerPort: 5000
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
       
 ---
 apiVersion : apps/v1beta1
@@ -101,17 +78,9 @@ spec:
           image: sqshq/piggymetrics-config
           ports:
           - containerPort: 8888
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -129,17 +98,9 @@ spec:
           image: sqshq/piggymetrics-gateway
           ports:
           - containerPort: 4000
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -157,17 +118,9 @@ spec:
           image: sqshq/piggymetrics-monitoring
           ports:
           - containerPort: 8080
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -185,17 +138,9 @@ spec:
           image: sqshq/piggymetrics-notification-service
           ports:
           - containerPort: 8000
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -213,17 +158,9 @@ spec:
           image: sqshq/piggymetrics-registry
           ports:
           - containerPort: 8761
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -241,17 +178,9 @@ spec:
           image: sqshq/piggymetrics-statistics-service
           ports:
           - containerPort: 7000
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -269,17 +198,9 @@ spec:
           image: sqshq/piggymetrics-turbine-stream-service
           ports:
           - containerPort: 8989
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -297,17 +218,9 @@ spec:
           image: sqshq/piggymetrics-mongodb
           ports:
           - containerPort: 80
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -325,17 +238,9 @@ spec:
           image: sqshq/piggymetrics-mongodb
           ports:
           - containerPort: 80
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -353,17 +258,9 @@ spec:
           image: sqshq/piggymetrics-mongodb
           ports:
           - containerPort: 80
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password
+          envFrom:
+          - configMapRef:
+              name: configmap
 ---
 apiVersion : apps/v1beta1
 kind: Deployment
@@ -381,15 +278,6 @@ spec:
           image: sqshq/piggymetrics-mongodb
           ports:
           - containerPort: 80
-          env:
-            - name: CONFIG_SERVICE_PASSWORD
-              value: password
-            - name: NOTIFICATION_SERVICE_PASSWORD
-              value: password
-            - name: STATISTICS_SERVICE_PASSWORD
-              value: password
-            - name: ACCOUNT_SERVICE_PASSWORD
-              value: password
-            - name: MONGODB_PASSWORD
-              value: password        
-      
+          envFrom:
+          - configMapRef:
+              name: configmap
