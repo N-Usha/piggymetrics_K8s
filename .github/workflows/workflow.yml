@@ -14,9 +14,9 @@ on: [push]
 # Environment variables available to all jobs and steps in this workflow
 env:
   REGISTRY_NAME: my-registry-name
-  CLUSTER_NAME: my-cluster-name
-  CLUSTER_RESOURCE_GROUP: my-cluster-resource-group
-  NAMESPACE: default
+  CLUSTER_NAME: aks4microservices
+  CLUSTER_RESOURCE_GROUP: devops-java-microservices-to-aks
+  NAMESPACE: piggydemo
   
 jobs:
   deploy-to-aks:
