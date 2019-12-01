@@ -8,6 +8,14 @@ data:
   NOTIFICATION_SERVICE_PASSWORD: password
   STATISTICS_SERVICE_PASSWORD: password
   ACCOUNT_SERVICE_PASSWORD: password
-  MONGODB_URI: password  
-  RABBITMQ_PASSWORD: password
+  ## ===== Mongo DB
+  MONGODB_DATABASE: piggymetrics
+  MONGODB_USER: piggymetrics
+  MONGODB_URI: password
   MONGODB_PASSWORD: password
+  # Rabbit MQ
+  RABBITMQ_RESOURCE_GROUP: rabbitmq
+  RABBITMQ_USERNAME: rabbitmq
+  RABBITMQ_PASSWORD: password
+  RABBITMQ_HOST: 40.87.124.184
+  RABBITMQ_PORT: 5672
