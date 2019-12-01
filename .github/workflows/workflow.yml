@@ -36,12 +36,12 @@ jobs:
       with:
         files: 'manifests/configmap.yml'
       env:
-        data.CONFIG_SERVICE_PASSWORD: ${{ secrets.CONFIG_SERVICE_PASSWORD_VALUE }}
-        data.NOTIFICATION_SERVICE_PASSWORD: ${{ secrets.NOTIFICATION_SERVICE_PASSWORD_VALUE }}
-        data.STATISTICS_SERVICE_PASSWORD: ${{ secrets.STATISTICS_SERVICE_PASSWORD_VALUE }}
-        data.ACCOUNT_SERVICE_PASSWORD: ${{ secrets.ACCOUNT_SERVICE_PASSWORD_VALUE }}
-        data.MONGODB_URI: ${{ secrets.MONGODB_URI_VALUE }} 
-        data.RABBITMQ_PASSWORD: ${{ secrets.RABBITMQ_PASSWORD_VALUE }} 
+        data.CONFIG_SERVICE_PASSWORD: ${{ secrets.CONFIG_SERVICE_PASSWORD }}
+        data.NOTIFICATION_SERVICE_PASSWORD: ${{ secrets.NOTIFICATION_SERVICE_PASSWORD }}
+        data.STATISTICS_SERVICE_PASSWORD: ${{ secrets.STATISTICS_SERVICE_PASSWORD }}
+        data.ACCOUNT_SERVICE_PASSWORD: ${{ secrets.ACCOUNT_SERVICE_PASSWORD }}
+        data.MONGODB_URI: ${{ secrets.MONGODB_URI }} 
+        data.RABBITMQ_PASSWORD: ${{ secrets.RABBITMQ_PASSWORD }} 
         
     - name: Dump GitHub context
       run: |
