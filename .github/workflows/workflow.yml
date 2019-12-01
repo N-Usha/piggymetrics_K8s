@@ -41,22 +41,22 @@ jobs:
         data.STATISTICS_SERVICE_PASSWORD: ${{ secrets.STATISTICS_SERVICE_PASSWORD_VALUE }}
         data.ACCOUNT_SERVICE_PASSWORD: ${{ secrets.ACCOUNT_SERVICE_PASSWORD_VALUE }}
         data.MONGODB_URI: ${{ secrets.MONGODB_URI_VALUE }} 
-        RABBITMQ_PASSWORD: ${{ secrets.RABBITMQ_PASSWORD_VALUE }} 
+        data.RABBITMQ_PASSWORD: ${{ secrets.RABBITMQ_PASSWORD_VALUE }} 
         
     - name: Dump GitHub context
       run: |
-       echo "$CONFIG_SERVICE_PASSWORD"
-       echo "$NOTIFICATION_SERVICE_PASSWORD"
-       echo "$STATISTICS_SERVICE_PASSWORD"
-       echo "$ACCOUNT_SERVICE_PASSWORD"
-       echo "$MONGODB_URI"
-       echo "$RABBITMQ_PASSWORD"
+       echo "$data.CONFIG_SERVICE_PASSWORD"
+       echo "$data.NOTIFICATION_SERVICE_PASSWORD"
+       echo "$data.STATISTICS_SERVICE_PASSWORD"
+       echo "$data.ACCOUNT_SERVICE_PASSWORD"
+       echo "$data.MONGODB_URI"
+       echo "$data.RABBITMQ_PASSWORD"
     
     # Deploy app to AKS
-    #- uses: azure/k8s-deploy@v1
-    #  with:
-    #    manifests: |
-    #      manifests/deployment.yml
-    #      manifests/service.yml
-    #      manifests/configmap.yml
-    #    namespace: ${{ env.NAMESPACE }}
+    - uses: azure/k8s-deploy@v1
+      with:
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+          manifests/configmap.yml
+        namespace: ${{ env.NAMESPACE }}
