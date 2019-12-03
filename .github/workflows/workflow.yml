@@ -118,5 +118,5 @@ jobs:
       with:
         manifests: ${{ steps.bake.outputs.manifestsBundle }}
         imagepullsecrets: |
-          ${{ env.REGISTRY_NAME }}-registry-connection
+          ${{ env.CONTAINER_REGISTRY }}-registry-connection
         namespace: ${{ env.NAMESPACE }}
