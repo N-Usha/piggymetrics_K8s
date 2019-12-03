@@ -18,13 +18,7 @@ env:
   CLUSTER_RESOURCE_GROUP: devops-java-microservices-to-aks
   NAMESPACE: piggydemo
   CONTAINER_REGISTRY: acr4piggymetrics
-  MONGODB_RESOURCE_ID: /subscriptions/343129b6-cc9a-49f8-8b05-fbebbc594bd1/resourceGroups/spring-cloud/providers/Microsoft.DocumentDB/databaseAccounts/piggymetrics
-  RABBITMQ_RESOURCE_GROUP: rabbitmq
-  RABBITMQ_USERNAME: rabbitmq
-  RABBITMQ_HOST: 40.87.124.184
-  RABBITMQ_PORT: 5672
-  VM_NAME: rabbitmq
-  ADMIN_USERNAME: selvasingh
+
   
 jobs:
   deploy-to-aks:
@@ -106,6 +100,18 @@ jobs:
         dockerComposeFile: './docker-compose.yml'
         kompose-version: 'latest'
       id: bake
+      env:
+          CONFIG_SERVICE_PASSWORD: ${{ secrets.CONFIG_SERVICE_PASSWORD }}
+          NOTIFICATION_SERVICE_PASSWORD: ${{ secrets.NOTIFICATION_SERVICE_PASSWORD }}
+          STATISTICS_SERVICE_PASSWORD: ${{ secrets.STATISTICS_SERVICE_PASSWORD }}
+          ACCOUNT_SERVICE_PASSWORD: ${{ secrets.ACCOUNT_SERVICE_PASSWORD }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }} 
+          RABBITMQ_PASSWORD: ${{ secrets.RABBITMQ_PASSWORD }} 
+          MONGODB_DATABASE: piggymetrics
+          RABBITMQ_RESOURCE_GROUP: rabbitmq
+          RABBITMQ_USERNAME: rabbitmq
+          RABBITMQ_HOST: 40.87.124.184
+          RABBITMQ_PORT: 5672
 
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
@@ -113,5 +119,4 @@ jobs:
         manifests: ${{ steps.bake.outputs.manifestsBundle }}
         imagepullsecrets: |
           ${{ env.REGISTRY_NAME }}-registry-connection
-        namespace: ${{ env.NAMESPACE }}  
-      
+        namespace: ${{ env.NAMESPACE }}
