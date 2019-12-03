@@ -18,6 +18,14 @@ env:
   CLUSTER_RESOURCE_GROUP: devops-java-microservices-to-aks
   NAMESPACE: piggydemo
   CONTAINER_REGISTRY: acr4piggymetrics
+  MONGODB_RESOURCE_ID: /subscriptions/343129b6-cc9a-49f8-8b05-fbebbc594bd1/resourceGroups/spring-cloud/providers/Microsoft.DocumentDB/databaseAccounts/piggymetrics
+  RABBITMQ_RESOURCE_GROUP: rabbitmq
+  RABBITMQ_USERNAME: rabbitmq
+  RABBITMQ_HOST: 40.87.124.184
+  RABBITMQ_PORT: 5672
+  VM_NAME: rabbitmq
+  ADMIN_USERNAME: selvasingh
+  
 jobs:
   deploy-to-aks:
     runs-on: ubuntu-latest
@@ -46,6 +54,50 @@ jobs:
         container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         secret-name: ${{ env.REGISTRY_NAME }}-registry-connection
         namespace: ${{ env.NAMESPACE }}
+    
+    # Create generic secrets to be available on pods
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: ${{ env.NAMESPACE }}
+        secret-type: 'generic'
+        arguments: --from-literal=key=CONFIG_SERVICE_PASSWORD --from-literal=value=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
+        secret-name: config-service-password
+        
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: ${{ env.NAMESPACE }}
+        secret-type: 'generic'
+        arguments: --from-literal=key=NOTIFICATION_SERVICE_PASSWORD=value=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} 
+        secret-name: notification-service-password
+        
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: ${{ env.NAMESPACE }}
+        secret-type: 'generic'
+        arguments: --from-literal=key=STATISTICS_SERVICE_PASSWORD=value=${{ secrets.STATISTICS_SERVICE_PASSWORD }} 
+        secret-name: statistics-service-password
+        
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: ${{ env.NAMESPACE }}
+        secret-type: 'generic'
+        arguments: --from-literal=key=ACCOUNT_SERVICE_PASSWORD=value=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} 
+        secret-name: account-service-password
+        
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: ${{ env.NAMESPACE }}
+        secret-type: 'generic'
+        arguments: --from-literal=key=MONGODB_URI=value=${{ secrets.MONGODB_URI }} 
+        secret-name: mongodb-uri
+           
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: ${{ env.NAMESPACE }}
+        secret-type: 'generic'
+        arguments: --from-literal=key=RABBITMQ_PASSWORD=value=${{ secrets.RABBITMQ_PASSWORD }} 
+        secret-name: rabbitmq-password               
+          
     
     # Baking the docker-compose file using Kompose to generate the manifests to deploy
     - uses: azure/k8s-bake@v1
