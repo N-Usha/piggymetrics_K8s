@@ -4,12 +4,9 @@ services:
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-config
+    ports:
+      - 8888:8888
     restart: always
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health || exit 1"]
-      interval: 30s
-      timeout: 30s
-      retries: 3
     logging:
       options:
         max-size: "10m"
@@ -52,6 +49,8 @@ services:
       MONGODB_DATABASE: $MONGODB_DATABASE
       MONGODB_URI: $MONGODB_URI
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-auth-service
+    ports:
+      - 5000:5000
     restart: always
     depends_on:
       - config
@@ -71,6 +70,8 @@ services:
       RABBITMQ_USERNAME: $RABBITMQ_USERNAME
       RABBITMQ_PASSWORD: $RABBITMQ_PASSWORD
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-account-service
+    ports:
+      - 6000:6000
     restart: always
     depends_on:
       - config
@@ -90,6 +91,8 @@ services:
       RABBITMQ_USERNAME: $RABBITMQ_USERNAME
       RABBITMQ_PASSWORD: $RABBITMQ_PASSWORD
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-statistics-service
+    ports:
+      - 7000:7000
     restart: always
     depends_on:
       - config
@@ -109,6 +112,8 @@ services:
       RABBITMQ_USERNAME: $RABBITMQ_USERNAME
       RABBITMQ_PASSWORD: $RABBITMQ_PASSWORD
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-notification-service
+    ports:
+      - 8000:8000
     restart: always
     depends_on:
       - config
