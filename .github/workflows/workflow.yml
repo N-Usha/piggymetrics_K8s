@@ -116,12 +116,12 @@ jobs:
 
 
     - run: |
-        cat ${{ steps.bake.outputs.manifestsBundle }}
+        kubectl apply -f ${{ steps.bake.outputs.manifestsBundle }} -n ${{ env.NAMESPACE }}
         
     # Deploy app to AKS
-    - uses: azure/k8s-deploy@v1
-      with:
-        manifests: ${{ steps.bake.outputs.manifestsBundle }}
-        imagepullsecrets: |
-          ${{ env.CONTAINER_REGISTRY }}-registry-connection
-        namespace: ${{ env.NAMESPACE }}
+#     - uses: azure/k8s-deploy@v1
+#       with:
+#         manifests: ${{ steps.bake.outputs.manifestsBundle }}
+#         imagepullsecrets: |
+#           ${{ env.CONTAINER_REGISTRY }}-registry-connection
+#         namespace: ${{ env.NAMESPACE }}
