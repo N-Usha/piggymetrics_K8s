@@ -113,6 +113,11 @@ jobs:
           RABBITMQ_HOST: 40.87.124.184
           RABBITMQ_PORT: 5672
 
+
+
+    - run: |
+        cat ${{ steps.bake.outputs.manifestsBundle }}
+        
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
       with:
