@@ -17,7 +17,7 @@ env:
   CLUSTER_NAME: aks4microservices
   CLUSTER_RESOURCE_GROUP: devops-java-microservices-to-aks
   NAMESPACE: piggydemo
-  CONTAINER_REGISTRY: acr4piggymetrics
+  CONTAINER_REGISTRY: javademosregistry
 
   
 jobs:
