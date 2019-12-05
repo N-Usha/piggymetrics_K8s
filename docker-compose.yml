@@ -5,8 +5,10 @@ services:
       CONFIG_SERVICE_PASSWORD: "$CONFIG_SERVICE_PASSWORD"
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-config
     ports:
-      - 8888
+      - 8888:8888
     restart: always
+    labels:
+      kompose.service.type: LoadBalancer
     logging:
       options:
         max-size: "10m"
@@ -20,7 +22,9 @@ services:
     depends_on:
       - config
     ports:
-      - 8761
+      - 8761:8761
+    labels:
+      kompose.service.type: LoadBalancer
     logging:
       options:
         max-size: "10m"
@@ -34,9 +38,9 @@ services:
     depends_on:
       - config
     ports:
-      - target: 80
-        published: 4000
-        protocol: tcp
+      - 80:4000
+    labels:
+      kompose.service.type: LoadBalancer
     logging:
       options:
         max-size: "10m"
@@ -108,7 +112,7 @@ services:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       NOTIFICATION_SERVICE_PASSWORD: $NOTIFICATION_SERVICE_PASSWORD
       MONGODB_DATABASE: '$${MONGODB_DATABASE}'
-      MONGODB_URI: '$${mongodb-uri}'
+      MONGODB_URI: '$${MONGODB_URI}'
       RABBITMQ_HOST: $RABBITMQ_HOST
       RABBITMQ_PORT: $RABBITMQ_PORT
       RABBITMQ_USERNAME: $RABBITMQ_USERNAME
