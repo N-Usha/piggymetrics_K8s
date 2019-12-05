@@ -18,6 +18,11 @@ env:
   CLUSTER_RESOURCE_GROUP: devops-java-microservices-to-aks
   NAMESPACE: piggymetrics
   CONTAINER_REGISTRY: javademosregistry
+  MONGODB_DATABASE: piggymetrics
+  RABBITMQ_RESOURCE_GROUP: rabbitmq
+  RABBITMQ_USERNAME: rabbitmq
+  RABBITMQ_HOST: 40.87.124.184
+  RABBITMQ_PORT: 5672
 
   
 jobs:
@@ -55,41 +60,41 @@ jobs:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
         arguments: --from-literal=key=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
-        secret-name: CONFIG_SERVICE_PASSWORD
+        secret-name: config_service_password
         
     - uses: azure/k8s-create-secret@v1
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        arguments: --from-literal=key=NOTIFICATION_SERVICE_PASSWORD=value=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} 
+        arguments: --from-literal=key=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} 
         secret-name: notification-service-password
         
     - uses: azure/k8s-create-secret@v1
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        arguments: --from-literal=key=STATISTICS_SERVICE_PASSWORD=value=${{ secrets.STATISTICS_SERVICE_PASSWORD }} 
+        arguments: --from-literal=key=${{ secrets.STATISTICS_SERVICE_PASSWORD }} 
         secret-name: statistics-service-password
         
     - uses: azure/k8s-create-secret@v1
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        arguments: --from-literal=key=ACCOUNT_SERVICE_PASSWORD=value=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} 
+        arguments: --from-literal=key=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} 
         secret-name: account-service-password
         
     - uses: azure/k8s-create-secret@v1
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        arguments: --from-literal=key=MONGODB_URI=value=${{ secrets.MONGODB_URI }} 
+        arguments: --from-literal=key=${{ secrets.MONGODB_URI }} 
         secret-name: mongodb-uri
            
     - uses: azure/k8s-create-secret@v1
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        arguments: --from-literal=key=RABBITMQ_PASSWORD=value=${{ secrets.RABBITMQ_PASSWORD }} 
+        arguments: --from-literal=key=${{ secrets.RABBITMQ_PASSWORD }} 
         secret-name: rabbitmq-password               
           
     
@@ -107,15 +112,12 @@ jobs:
           ACCOUNT_SERVICE_PASSWORD: ${{ secrets.ACCOUNT_SERVICE_PASSWORD }}
           MONGODB_URI: ${{ secrets.MONGODB_URI }} 
           RABBITMQ_PASSWORD: ${{ secrets.RABBITMQ_PASSWORD }} 
-          MONGODB_DATABASE: piggymetrics
-          RABBITMQ_RESOURCE_GROUP: rabbitmq
-          RABBITMQ_USERNAME: rabbitmq
-          RABBITMQ_HOST: 40.87.124.184
-          RABBITMQ_PORT: 5672
+#           MONGODB_DATABASE: piggymetrics
+#           RABBITMQ_RESOURCE_GROUP: rabbitmq
+#           RABBITMQ_USERNAME: rabbitmq
+#           RABBITMQ_HOST: 40.87.124.184
+#           RABBITMQ_PORT: 5672
           
-
-
-
     - run: |
         kubectl apply -f ${{ steps.bake.outputs.manifestsBundle }} -n ${{ env.NAMESPACE }}
         
