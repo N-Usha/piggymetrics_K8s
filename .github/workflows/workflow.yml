@@ -16,7 +16,7 @@ env:
   REGISTRY_NAME: my-registry-name
   CLUSTER_NAME: aks4microservices
   CLUSTER_RESOURCE_GROUP: devops-java-microservices-to-aks
-  NAMESPACE: piggydemo
+  NAMESPACE: piggymetrics
   CONTAINER_REGISTRY: javademosregistry
 
   
