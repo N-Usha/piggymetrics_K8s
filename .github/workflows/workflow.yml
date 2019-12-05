@@ -54,8 +54,8 @@ jobs:
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        arguments: --from-literal=key=CONFIG_SERVICE_PASSWORD --from-literal=value=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
-        secret-name: config-service-password
+        arguments: --from-literal=key=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
+        secret-name: CONFIG_SERVICE_PASSWORD
         
     - uses: azure/k8s-create-secret@v1
       with:
@@ -112,6 +112,7 @@ jobs:
           RABBITMQ_USERNAME: rabbitmq
           RABBITMQ_HOST: 40.87.124.184
           RABBITMQ_PORT: 5672
+          
 
 
 
