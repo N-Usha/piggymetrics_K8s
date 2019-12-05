@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 services:
   config:
     environment:
@@ -34,7 +34,9 @@ services:
     depends_on:
       - config
     ports:
-      - "80:4000"
+      - target: 80
+        published: 4000
+        protocol: tcp
     logging:
       options:
         max-size: "10m"
