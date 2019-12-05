@@ -34,7 +34,8 @@ services:
     depends_on:
       - config
     ports:
-      - 80:4000
+      - target: 80
+        published: 4000
     logging:
       options:
         max-size: "10m"
