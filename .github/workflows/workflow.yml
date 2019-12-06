@@ -118,16 +118,16 @@ jobs:
 #           RABBITMQ_PORT: 5672
 #           MONGODB_URI: ${{ secrets.MONGODB_URI }} 
           
-    - run: |
-        kubectl apply -f manifests/manifest.yml -n ${{ env.NAMESPACE }}
-      env:
-           CONTAINER_REGISTRY: ${{ env.CONTAINER_REGISTRY }}
+#     - run: |
+#         kubectl apply -f manifests/manifest.yml -n ${{ env.NAMESPACE }}
+#       env:
+#            CONTAINER_REGISTRY: ${{ env.CONTAINER_REGISTRY }}
         
 #     # Deploy app to AKS
-#     - uses: azure/k8s-deploy@v1
-#       with:
-# #         manifests: ${{ steps.bake.outputs.manifestsBundle }}
-#         manifests: manifests/manifest.yml 
-#         imagepullsecrets: |
-#           ${{ env.CONTAINER_REGISTRY }}-registry-connection
-#         namespace: ${{ env.NAMESPACE }}
+    - uses: azure/k8s-deploy@replaceLogic
+      with:
+#         manifests: ${{ steps.bake.outputs.manifestsBundle }}
+        manifests: manifests/manifest.yml 
+        imagepullsecrets: |
+          ${{ env.CONTAINER_REGISTRY }}-registry-connection
+        namespace: ${{ env.NAMESPACE }}
