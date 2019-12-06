@@ -56,13 +56,7 @@ jobs:
     
     # Create generic secrets to be available on pods
     - run: |
-        kubectl create secret generic piggy-passwords -n ${{ env.NAMESPACE }}
-        --from-literal=config-service-password=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
-        --from-literal=notification-service-password=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }}
-        --from-literal=statistics-service-password=${{ secrets.STATISTICS_SERVICE_PASSWORD }} 
-        --from-literal=account-service-password=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} 
-        --from-literal=notification-service-password=${{ secrets.MONGODB_URI }}
-        --from-literal=rabbitmq-password=${{ secrets.RABBITMQ_PASSWORD }}
+        kubectl create secret generic piggy-passwords -n ${{ env.NAMESPACE }} --from-literal=config-service-password=${{ secrets.CONFIG_SERVICE_PASSWORD }} --from-literal=notification-service-password=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} --from-literal=statistics-service-password=${{ secrets.STATISTICS_SERVICE_PASSWORD }} --from-literal=account-service-password=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} --from-literal=notification-service-password=${{ secrets.MONGODB_URI }} --from-literal=rabbitmq-password=${{ secrets.RABBITMQ_PASSWORD }}
 
 #     - uses: azure/k8s-create-secret@v1
 #       with:
