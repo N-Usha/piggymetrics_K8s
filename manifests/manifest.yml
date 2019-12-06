@@ -38,6 +38,7 @@ items:
     - name: "8888"
       port: 31212
       targetPort: 8888
+    type: LoadBalancer
     selector:
         app: config
   status:
