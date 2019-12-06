@@ -59,43 +59,56 @@ jobs:
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        arguments: --from-literal=key=CONFIG_SERVICE_PASSWORD --from-literal=value=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
-        secret-name: config-service-password
+        arguments: |
+          --from-literal=config-service-password=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
+          --from-literal=notification-service-password=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }}
+          --from-literal=statistics-service-password=${{ secrets.STATISTICS_SERVICE_PASSWORD }} 
+          --from-literal=account-service-password=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} 
+          --from-literal=notification-service-password=${{ secrets.MONGODB_URI }}
+          --from-literal=rabbitmq-password=${{ secrets.RABBITMQ_PASSWORD }}
+        secret-name: piggy-passwords
         
-    - uses: azure/k8s-create-secret@v1
-      with:
-        namespace: ${{ env.NAMESPACE }}
-        secret-type: 'generic'
-        arguments: --from-literal=key=NOTIFICATION_SERVICE_PASSWORD=value=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} 
-        secret-name: notification-service-password
+#     - uses: azure/k8s-create-secret@v1
+#       with:
+#         namespace: ${{ env.NAMESPACE }}
+#         secret-type: 'generic'
+#         arguments: --from-literal=username=CONFIG_SERVICE_PASSWORD --from-literal=password=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
+#         secret-name: config-service-password
         
-    - uses: azure/k8s-create-secret@v1
-      with:
-        namespace: ${{ env.NAMESPACE }}
-        secret-type: 'generic'
-        arguments: --from-literal=key=STATISTICS_SERVICE_PASSWORD=value=${{ secrets.STATISTICS_SERVICE_PASSWORD }} 
-        secret-name: statistics-service-password
+#     - uses: azure/k8s-create-secret@v1
+#       with:
+#         namespace: ${{ env.NAMESPACE }}
+#         secret-type: 'generic'
+#         arguments: --from-literal=username=NOTIFICATION_SERVICE_PASSWORD=password=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} 
+#         secret-name: notification-service-password
         
-    - uses: azure/k8s-create-secret@v1
-      with:
-        namespace: ${{ env.NAMESPACE }}
-        secret-type: 'generic'
-        arguments: --from-literal=key=ACCOUNT_SERVICE_PASSWORD=value=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} 
-        secret-name: account-service-password
+#     - uses: azure/k8s-create-secret@v1
+#       with:
+#         namespace: ${{ env.NAMESPACE }}
+#         secret-type: 'generic'
+#         arguments: --from-literal=username=STATISTICS_SERVICE_PASSWORD=password=${{ secrets.STATISTICS_SERVICE_PASSWORD }} 
+#         secret-name: statistics-service-password
         
-    - uses: azure/k8s-create-secret@v1
-      with:
-        namespace: ${{ env.NAMESPACE }}
-        secret-type: 'generic'
-        arguments: --from-literal=key=MONGODB_URI=value=${{ secrets.MONGODB_URI }} 
-        secret-name: mongodb-uri
+#     - uses: azure/k8s-create-secret@v1
+#       with:
+#         namespace: ${{ env.NAMESPACE }}
+#         secret-type: 'generic'
+#         arguments: --from-literal=username=ACCOUNT_SERVICE_PASSWORD=password=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} 
+#         secret-name: account-service-password
+        
+#     - uses: azure/k8s-create-secret@v1
+#       with:
+#         namespace: ${{ env.NAMESPACE }}
+#         secret-type: 'generic'
+#         arguments: --from-literal=username=MONGODB_URI=value=${{ secrets.MONGODB_URI }} 
+#         secret-name: mongodb-uri
            
-    - uses: azure/k8s-create-secret@v1
-      with:
-        namespace: ${{ env.NAMESPACE }}
-        secret-type: 'generic'
-        arguments: --from-literal=key=RABBITMQ_PASSWORD=value=${{ secrets.RABBITMQ_PASSWORD }} 
-        secret-name: rabbitmq-password                        
+#     - uses: azure/k8s-create-secret@v1
+#       with:
+#         namespace: ${{ env.NAMESPACE }}
+#         secret-type: 'generic'
+#         arguments: --from-literal=username=RABBITMQ_PASSWORD=password=${{ secrets.RABBITMQ_PASSWORD }} 
+#         secret-name: rabbitmq-password                        
           
     
     # Baking the docker-compose file using Kompose to generate the manifests to deploy
