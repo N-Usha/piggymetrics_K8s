@@ -53,7 +53,9 @@ services:
       STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
       ACCOUNT_SERVICE_PASSWORD: $ACCOUNT_SERVICE_PASSWORD
       MONGODB_DATABASE: $MONGODB_DATABASE
-      MONGODB_URI: $$MONGODB_URI
+      MONGODB_URI: /run/secrets/mongodb-uri
+    secrets:
+      - mongodb-uri
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-auth-service
     ports:
       - 5000
@@ -127,3 +129,6 @@ services:
       options:
         max-size: "10m"
         max-file: "10"
+secrets:
+   mongodb-uri:
+     external true
