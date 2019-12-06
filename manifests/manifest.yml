@@ -10,6 +10,8 @@ items:
     - name: "6000"
       port: 6000
       targetPort: 6000
+    selector:
+        app: account-service
   status:
     loadBalancer: {}
 - apiVersion: v1
@@ -22,6 +24,8 @@ items:
     - name: "5000"
       port: 5000
       targetPort: 5000
+    selector:
+        app: auth-service
   status:
     loadBalancer: {}
 - apiVersion: v1
@@ -34,6 +38,8 @@ items:
     - name: "8888"
       port: 8888
       targetPort: 8888
+    selector:
+        app: config
   status:
     loadBalancer: {}
 - apiVersion: v1
@@ -47,6 +53,8 @@ items:
       port: 80
       targetPort: 4000
     type: LoadBalancer
+    selector:
+        app: gateway
   status:
     loadBalancer: {}
 - apiVersion: v1
@@ -59,6 +67,8 @@ items:
     - name: "8000"
       port: 8000
       targetPort: 8000
+    selector:
+        app: notification-service
   status:
     loadBalancer: {}
 - apiVersion: v1
@@ -71,6 +81,8 @@ items:
     - name: "8761"
       port: 8761
       targetPort: 8761
+    selector:
+        app: registry
   status:
     loadBalancer: {}
 - apiVersion: v1
@@ -83,6 +95,8 @@ items:
     - name: "7000"
       port: 7000
       targetPort: 7000
+    selector:
+        app: statistics-service
   status:
     loadBalancer: {}
 - apiVersion: extensions/v1beta1
@@ -96,6 +110,8 @@ items:
     template:
       metadata:
         creationTimestamp: null
+        labels:
+          app: account-service
       spec:
         containers:
         - env:
@@ -141,6 +157,8 @@ items:
     template:
       metadata:
         creationTimestamp: null
+        labels:
+          app: auth-service
       spec:
         containers:
         - env:
@@ -193,6 +211,8 @@ items:
     template:
       metadata:
         creationTimestamp: null
+        labels:
+          app: config
       spec:
         containers:
         - env:
@@ -219,6 +239,8 @@ items:
     template:
       metadata:
         creationTimestamp: null
+        labels:
+          app: gateway
       spec:
         containers:
         - env:
@@ -245,6 +267,8 @@ items:
     template:
       metadata:
         creationTimestamp: null
+        labels:
+          app: notification-service
       spec:
         containers:
         - env:
@@ -290,6 +314,8 @@ items:
     template:
       metadata:
         creationTimestamp: null
+        labels:
+          app: registry
       spec:
         containers:
         - env:
@@ -316,6 +342,8 @@ items:
     template:
       metadata:
         creationTimestamp: null
+        labels:
+          app: statistics-service
       spec:
         containers:
         - env:
