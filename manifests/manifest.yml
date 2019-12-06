@@ -51,7 +51,7 @@ items:
   spec:
     ports:
     - name: "80"
-      port: 32131
+      port: 80
       targetPort: 4000
     type: LoadBalancer
     selector:
@@ -80,8 +80,8 @@ items:
   spec:
     ports:
     - name: "8761"
-      port: 32475
-      targetPort: 8761
+      port: 8761
+      targetPort: 32475
     type: LoadBalancer
     selector:
         app: registry
