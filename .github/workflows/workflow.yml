@@ -87,6 +87,10 @@ jobs:
 #         kubectl apply -f manifests/manifest.yml -n ${{ env.NAMESPACE }}
 #       env:
 #            CONTAINER_REGISTRY: ${{ env.CONTAINER_REGISTRY }}
+     
+     # Start an instance of Spring Cloud Config
+    - run: |
+       docker run -p 127.0.0.1:8888:8888 ${CONTAINER_REGISTRY}.azurecr.io/config
         
 #     # Deploy app to AKS
     - uses: azure/k8s-deploy@replaceLogic
