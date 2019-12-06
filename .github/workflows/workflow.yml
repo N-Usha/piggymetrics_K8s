@@ -91,15 +91,7 @@ jobs:
 #     # Deploy app to AKS
     - uses: azure/k8s-deploy@replaceLogic
       with:
-#         manifests: ${{ steps.bake.outputs.manifestsBundle }}
         manifests: manifests/manifest.yml 
         imagepullsecrets: |
           ${{ env.CONTAINER_REGISTRY }}-registry-connection
         namespace: ${{ env.NAMESPACE }}
-      env:
-          MONGODB_DATABASE: piggymetrics
-          RABBITMQ_RESOURCE_GROUP: rabbitmq
-          RABBITMQ_USERNAME: rabbitmq
-          RABBITMQ_HOST: 40.87.124.184
-          RABBITMQ_PORT: 5672
-          MONGODB_URI: ${{ secrets.MONGODB_URI }} 
