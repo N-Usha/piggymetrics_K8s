@@ -139,7 +139,7 @@ items:
           - name: RABBITMQ_PORT
           - name: RABBITMQ_HOST
           - name: RABBITMQ_USERNAME
-          image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-account-service
+          image: javademosregistry.azurecr.io/piggymetrics-account-service
           name: account-service
           ports:
           - containerPort: 6000
@@ -193,7 +193,7 @@ items:
                 name: rabbitmq-password
                 key: RABBITMQ_PASSWORD
           - name: MONGODB_DATABASE
-          image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-auth-service
+          image: javademosregistry.azurecr.io/piggymetrics-auth-service
           name: auth-service
           ports:
           - containerPort: 5000
@@ -221,7 +221,7 @@ items:
               secretKeyRef:
                 name: config-service-password
                 key: CONFIG_SERVICE_PASSWORD
-          image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-config
+          image: javademosregistry.azurecr.io/piggymetrics-config
           name: config
           ports:
           - containerPort: 8888
@@ -249,7 +249,7 @@ items:
               secretKeyRef:
                 name: config-service-password
                 key: CONFIG_SERVICE_PASSWORD
-          image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-gateway
+          image: javademosregistry.azurecr.io/piggymetrics-gateway
           name: gateway
           ports:
           - containerPort: 4000
@@ -296,7 +296,7 @@ items:
                 key: RABBITMQ_PASSWORD
           - name: RABBITMQ_PORT
           - name: RABBITMQ_USERNAME
-          image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-notification-service
+          image: javademosregistry.azurecr.io/piggymetrics-notification-service
           name: notification-service
           ports:
           - containerPort: 8000
@@ -324,7 +324,7 @@ items:
               secretKeyRef:
                 name: config-service-password
                 key: CONFIG_SERVICE_PASSWORD
-          image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-registry
+          image: javademosregistry.azurecr.io/piggymetrics-registry
           name: registry
           ports:
           - containerPort: 8761
@@ -371,7 +371,7 @@ items:
               secretKeyRef:
                 name: statistics-service-password
                 key: STATISTICS_SERVICE_PASSWORD
-          image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-statistics-service
+          image: javademosregistry.azurecr.io/piggymetrics-statistics-service
           name: statistics-service
           ports:
           - containerPort: 7000
