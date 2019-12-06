@@ -119,17 +119,17 @@ items:
             valueFrom:
               secretKeyRef:
                 name: account-service-password
-                key: ACCOUNT_SERVICE_PASSWORD
+                key: key
           - name: CONFIG_SERVICE_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: config-service-password
-                key: CONFIG_SERVICE_PASSWORD
+                key: key
           - name: MONGODB_URI
             valueFrom:
               secretKeyRef:
                 name: mongodb-uri
-                key: MONGODB_URI 
+                key: key 
           - name: RABBITMQ_PASSWORD
             valueFrom:
               secretKeyRef:
