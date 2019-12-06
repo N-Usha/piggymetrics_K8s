@@ -53,9 +53,7 @@ services:
       STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
       ACCOUNT_SERVICE_PASSWORD: $ACCOUNT_SERVICE_PASSWORD
       MONGODB_DATABASE: $MONGODB_DATABASE
-      MONGODB_URI: /run/secrets/mongodb-uri
-    secrets:
-      - mongodb-uri
+      MONGODB_URI: $MONGODB_URI
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-auth-service
     ports:
       - 5000
@@ -76,9 +74,7 @@ services:
       RABBITMQ_PORT: $RABBITMQ_PORT
       RABBITMQ_USERNAME: $RABBITMQ_USERNAME
       RABBITMQ_PASSWORD: $RABBITMQ_PASSWORD
-      MONGODB_URI: /run/secrets/mongodb-uri
-    secrets:
-      - mongodb-uri
+      MONGODB_URI: $MONGODB_URI
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-account-service
     ports:
       - 6000
@@ -122,9 +118,7 @@ services:
       RABBITMQ_PORT: $RABBITMQ_PORT
       RABBITMQ_USERNAME: $RABBITMQ_USERNAME
       RABBITMQ_PASSWORD: $RABBITMQ_PASSWORD
-      MONGODB_URI: /run/secrets/mongodb-uri
-    secrets:
-      - mongodb-uri
+      MONGODB_URI: $MONGODB_URI
     image: ${CONTAINER_REGISTRY}.azurecr.io/piggymetrics-notification-service
     ports:
       - 8000
@@ -135,6 +129,3 @@ services:
       options:
         max-size: "10m"
         max-file: "10"
-secrets:
-   mongodb-uri:
-     file: secrets.txt
