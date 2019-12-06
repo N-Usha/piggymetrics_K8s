@@ -55,9 +55,6 @@ jobs:
         namespace: ${{ env.NAMESPACE }}
     
     # Create generic secrets to be available on pods
-#     - run: |
-#         kubectl create secret generic piggy-passwords -n ${{ env.NAMESPACE }} --from-literal=config-service-password=${{ secrets.CONFIG_SERVICE_PASSWORD }} --from-literal=notification-service-password=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} --from-literal=statistics-service-password=${{ secrets.STATISTICS_SERVICE_PASSWORD }} --from-literal=account-service-password=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} --from-literal=rabbitmq-password=${{ secrets.RABBITMQ_PASSWORD }} --from-literal=mongodb-uri=${{ secrets.MONGODB_URI }}  
-        
     - uses: azure/k8s-create-secret@v1
       with:
         namespace: ${{ env.NAMESPACE }}
@@ -65,48 +62,12 @@ jobs:
         arguments: --from-literal=config-service-password=${{ secrets.CONFIG_SERVICE_PASSWORD }} --from-literal=notification-service-password=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} --from-literal=statistics-service-password=${{ secrets.STATISTICS_SERVICE_PASSWORD }} --from-literal=account-service-password=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} --from-literal=rabbitmq-password=${{ secrets.RABBITMQ_PASSWORD }} --from-literal=mongodb-uri=${{ secrets.MONGODB_URI }}  
         secret-name: piggy-passwords
         
-#     - uses: azure/k8s-create-secret@v1
-#       with:
-#         namespace: ${{ env.NAMESPACE }}
-#         secret-type: 'generic'
-#         arguments: --from-literal=username=CONFIG_SERVICE_PASSWORD --from-literal=password=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
-#         secret-name: config-service-password
-        
-#     - uses: azure/k8s-create-secret@v1
-#       with:
-#         namespace: ${{ env.NAMESPACE }}
-#         secret-type: 'generic'
-#         arguments: --from-literal=username=NOTIFICATION_SERVICE_PASSWORD=password=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} 
-#         secret-name: notification-service-password
-        
-#     - uses: azure/k8s-create-secret@v1
-#       with:
-#         namespace: ${{ env.NAMESPACE }}
-#         secret-type: 'generic'
-#         arguments: --from-literal=username=STATISTICS_SERVICE_PASSWORD=password=${{ secrets.STATISTICS_SERVICE_PASSWORD }} 
-#         secret-name: statistics-service-password
-        
-#     - uses: azure/k8s-create-secret@v1
-#       with:
-#         namespace: ${{ env.NAMESPACE }}
-#         secret-type: 'generic'
-#         arguments: --from-literal=username=ACCOUNT_SERVICE_PASSWORD=password=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} 
-#         secret-name: account-service-password
-        
-#     - uses: azure/k8s-create-secret@v1
-#       with:
-#         namespace: ${{ env.NAMESPACE }}
-#         secret-type: 'generic'
-#         arguments: --from-literal=username=MONGODB_URI=value=${{ secrets.MONGODB_URI }} 
-#         secret-name: mongodb-uri
-           
-#     - uses: azure/k8s-create-secret@v1
-#       with:
-#         namespace: ${{ env.NAMESPACE }}
-#         secret-type: 'generic'
-#         arguments: --from-literal=username=RABBITMQ_PASSWORD=password=${{ secrets.RABBITMQ_PASSWORD }} 
-#         secret-name: rabbitmq-password                        
-          
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: ${{ env.NAMESPACE }}
+        secret-type: 'generic'
+        arguments: --from-literal=mongodb=${{ env.MONGODB_DATABASE }} --from-literal=rabbitmq-rg=${{ env.RABBITMQ_RESOURCE_GROUP }} --from-literal=rabbitmq-username=${{ env.RABBITMQ_USERNAME }} --from-literal=rabbitmq-host=${{ env.RABBITMQ_HOST }} --from-literal=rabbitmq-password=${{ secrets.RABBITMQ_HOST }} --from-literal=rabbitmq-port=${{ secrets.RABBITMQ_PORT }} 
+        secret-name: piggy-config      
     
     # Baking the docker-compose file using Kompose to generate the manifests to deploy
 #     - uses: azure/k8s-bake@v1
@@ -116,17 +77,11 @@ jobs:
 #         kompose-version: 'latest'
 #       id: bake
 #       env:
-#           CONFIG_SERVICE_PASSWORD: ${{ secrets.CONFIG_SERVICE_PASSWORD }}
-#           NOTIFICATION_SERVICE_PASSWORD: ${{ secrets.NOTIFICATION_SERVICE_PASSWORD }}
-#           STATISTICS_SERVICE_PASSWORD: ${{ secrets.STATISTICS_SERVICE_PASSWORD }}
-#           ACCOUNT_SERVICE_PASSWORD: ${{ secrets.ACCOUNT_SERVICE_PASSWORD }}
-#           RABBITMQ_PASSWORD: ${{ secrets.RABBITMQ_PASSWORD }} 
 #           MONGODB_DATABASE: piggymetrics
 #           RABBITMQ_RESOURCE_GROUP: rabbitmq
 #           RABBITMQ_USERNAME: rabbitmq
 #           RABBITMQ_HOST: 40.87.124.184
 #           RABBITMQ_PORT: 5672
-#           MONGODB_URI: ${{ secrets.MONGODB_URI }} 
           
 #     - run: |
 #         kubectl apply -f manifests/manifest.yml -n ${{ env.NAMESPACE }}
