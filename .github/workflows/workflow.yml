@@ -90,7 +90,7 @@ jobs:
      
      # Start an instance of Spring Cloud Config
     - run: |
-       docker run -p 127.0.0.1:8888:8888 ${CONTAINER_REGISTRY}.azurecr.io/config
+       docker run -p 127.0.0.1:8888:8888 ${{ env.CONTAINER_REGISTRY }}.azurecr.io/config
         
 #     # Deploy app to AKS
     - uses: azure/k8s-deploy@replaceLogic
