@@ -66,7 +66,7 @@ jobs:
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        arguments: --from-literal=mongodb=${{ env.MONGODB_DATABASE }} --from-literal=rabbitmq-rg=${{ env.RABBITMQ_RESOURCE_GROUP }} --from-literal=rabbitmq-username=${{ env.RABBITMQ_USERNAME }} --from-literal=rabbitmq-host=${{ env.RABBITMQ_HOST }} --from-literal=rabbitmq-password=${{ secrets.RABBITMQ_HOST }} --from-literal=rabbitmq-port=${{ secrets.RABBITMQ_PORT }} 
+        arguments: --from-literal=mongodb=${{ env.MONGODB_DATABASE }} --from-literal=rabbitmq-rg=${{ env.RABBITMQ_RESOURCE_GROUP }} --from-literal=rabbitmq-username=${{ env.RABBITMQ_USERNAME }} --from-literal=rabbitmq-host=${{ env.RABBITMQ_HOST }} --from-literal=rabbitmq-password=${{ env.RABBITMQ_HOST }} --from-literal=rabbitmq-port=${{ env.RABBITMQ_PORT }} 
         secret-name: piggy-config      
     
     # Baking the docker-compose file using Kompose to generate the manifests to deploy
