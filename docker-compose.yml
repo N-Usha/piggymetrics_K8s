@@ -131,4 +131,4 @@ services:
         max-file: "10"
 secrets:
    mongodb-uri:
-     external true
+     file: secrets.txt
