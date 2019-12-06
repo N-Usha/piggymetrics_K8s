@@ -136,9 +136,25 @@ items:
                 name: piggy-passwords
                 key: rabbitmq-password
           - name: MONGODB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: mongodb
           - name: RABBITMQ_PORT
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: rabbitmq-port
           - name: RABBITMQ_HOST
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: rabbitmq-host
           - name: RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: rabbitmq-username
           image: javademosregistry.azurecr.io/piggymetrics-account-service
           name: account-service
           ports:
@@ -193,6 +209,10 @@ items:
                 name: piggy-passwords
                 key: rabbitmq-password
           - name: MONGODB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: mongodb
           image: javademosregistry.azurecr.io/piggymetrics-auth-service
           name: auth-service
           ports:
@@ -278,6 +298,10 @@ items:
                 name: piggy-passwords
                 key: config-service-password
           - name: MONGODB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: mongodb
           - name: MONGODB_URI
             valueFrom:
               secretKeyRef:
@@ -289,13 +313,25 @@ items:
                 name: piggy-passwords
                 key: notification-service-password
           - name: RABBITMQ_HOST
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: rabbitmq-host
           - name: RABBITMQ_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: piggy-passwords
                 key: rabbitmq-password
           - name: RABBITMQ_PORT
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: rabbitmq-port
           - name: RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: rabbitmq-username
           image: javademosregistry.azurecr.io/piggymetrics-notification-service
           name: notification-service
           ports:
@@ -353,19 +389,35 @@ items:
                 name: piggy-passwords
                 key: config-service-password
           - name: MONGODB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: mongodb
           - name: MONGODB_URI
             valueFrom:
               secretKeyRef:
                 name: piggy-passwords
                 key: mongodb-uri
           - name: RABBITMQ_HOST
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: rabbitmq-host
           - name: RABBITMQ_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: piggy-passwords
                 key: rabbitmq-password
           - name: RABBITMQ_PORT
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: rabbitmq-port
           - name: RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: piggy-config
+                key: rabbitmq-username
           - name: STATISTICS_SERVICE_PASSWORD
             valueFrom:
               secretKeyRef:
