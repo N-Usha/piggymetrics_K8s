@@ -36,7 +36,7 @@ items:
   spec:
     ports:
     - name: "8888"
-      port: 31212
+      port: 8888
       targetPort: 8888
     type: LoadBalancer
     selector:
