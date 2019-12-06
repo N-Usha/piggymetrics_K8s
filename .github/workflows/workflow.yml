@@ -62,13 +62,7 @@ jobs:
       with:
         namespace: ${{ env.NAMESPACE }}
         secret-type: 'generic'
-        arguments: |
-          --from-literal=config-service-password=${{ secrets.CONFIG_SERVICE_PASSWORD }} 
-          --from-literal=notification-service-password=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }}
-          --from-literal=statistics-service-password=${{ secrets.STATISTICS_SERVICE_PASSWORD }} 
-          --from-literal=account-service-password=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} 
-          --from-literal=mongodb-uri=${{ secrets.MONGODB_URI }}
-          --from-literal=rabbitmq-password=${{ secrets.RABBITMQ_PASSWORD }}
+        arguments: --from-literal=config-service-password=${{ secrets.CONFIG_SERVICE_PASSWORD }} --from-literal=notification-service-password=${{ secrets.NOTIFICATION_SERVICE_PASSWORD }} --from-literal=statistics-service-password=${{ secrets.STATISTICS_SERVICE_PASSWORD }} --from-literal=account-service-password=${{ secrets.ACCOUNT_SERVICE_PASSWORD }} --from-literal=rabbitmq-password=${{ secrets.RABBITMQ_PASSWORD }} --from-literal=mongodb-uri=${{ secrets.MONGODB_URI }}  
         secret-name: piggy-passwords
         
 #     - uses: azure/k8s-create-secret@v1
