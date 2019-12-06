@@ -116,7 +116,7 @@ jobs:
           RABBITMQ_USERNAME: rabbitmq
           RABBITMQ_HOST: 40.87.124.184
           RABBITMQ_PORT: 5672
-#           MONGODB_URI: ${{ secrets.MONGODB_URI }} 
+          MONGODB_URI: ${{ secrets.MONGODB_URI }} 
           
     - run: |
         kubectl apply -f ${{ steps.bake.outputs.manifestsBundle }} -n ${{ env.NAMESPACE }}
