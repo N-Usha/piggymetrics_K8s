@@ -30,6 +30,14 @@ jobs:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+        
+    - name: Azure key vault - Get Secrets
+      uses: azure/get-keyvault-secrets@v1
+      with:
+        # Name of the azure key vault
+       keyvault: ${{ secrets.AZURE_KEY_VAULT }}
+        # Name of the secret to be fetched
+       secrets:  '*'
      
     # Substituting passwords in the configmap.yml with the secrets configured at Repo level
     - uses: microsoft/variable-substitution@v1 
