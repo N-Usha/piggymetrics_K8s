@@ -32,7 +32,7 @@ jobs:
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
         
     - name: Azure key vault - Get Secrets
-      uses: azure/get-keyvault-secrets@v1
+      uses: azure/get-keyvault-secrets@releases/v1
       with:
         # Name of the azure key vault
        keyvault: ${{ secrets.AZURE_KEY_VAULT }}
